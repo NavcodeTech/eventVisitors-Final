@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Home-Visitors</title>
+    <style>
+    {% load static %}
+        body{
+        font-family: 'Lato', sans-serif;
+        background-image:url({% static 'visitorsApp/backwall.png' %});
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+        background-attachment:fixed;
+        }
+        #logo{
+        width:100%;
+        display: inline-block;
+        margin-top: 0px;
+        }
+         #greetings{
+         width:100%;
+         display: inline-block;
+         }
+          #logo a{
+        float:right;
+        margin-top:10px;
+        }
+
+         .greetings h2 {
+   margin: 30px;
+   background-color: #44BBC1;
+   border: 1px solid black;
+   opacity: 0.8;
+   width :30%;
+   padding-left:100px;
+   border-radius:10px;
+}
+
+.contain-option{
+margin:auto;
+text-align:center;
+ background-color: #907F7F;
+ border-radius:10px;
+   border: 0.5px solid ;
+   opacity: 0.8;
+padding:10px;
+width :50%;
+height:350px;
+}
+#option{
+   display: inline-block;
+   text-align: center;
+   width:70%
+   padding-left:100px;
+
+}
+.option h3{
+    background-color: #337EFF;
+    color: white;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.transparentText {
+   margin: 30px;
+   background-color: #5fd91e;
+   border: 1px solid black;
+   opacity: 0.8;
+   width :60%;
+}
+.transparentText p {
+   margin: 5%;
+   font-weight: bolder;
+   color: pink;
+   font-size: 25px;
+}
+
+.transparentText2 {
+   margin: 30px;
+   background-color: #5fd91e;
+   border: 1px solid black;
+   opacity: 0.8;
+   width:60%;
+}
+.transparentText2 p {
+   margin: 5%;
+   font-weight: bolder;
+   color: red;
+   font-size: 25px;
+}
+    </style>
+</head>
+<body>
+{% load static %}
+<div class ="containerfull">
+<div class="container-fluid" id="logo">
+    <img src="{% static 'visitorsApp/mylogo.png' %}">
+    <a href="/logout"><img src="{% static 'visitorsApp/logoutb.png' %}"></a>
+</div>
+<div class="greetings" id="greetings">
+    {% csrf_token %}
+    <h2> Welcome, {{user.username}} </h2>
+</div>
+<div class="contain-option">
+    <div class="option" id="option" align="center">
+    <h3>Choose your option:</h3>
+    <div class="transparentBox" align="center">
+    <div class="transparentText">
+    <p><a href="/visitors">click here to take visiting record.</a></p>
+    </div>
+    </div>
+     <div class="transparentBox2" align="center">
+    <div class="transparentText2">
+    <p><a href="/meeting">click here to take meeting record.</a></p>
+    </div>
+     </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

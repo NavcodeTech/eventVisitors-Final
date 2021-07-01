@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Home-Visitors</title>
+    <style>
+    {% load static %}
+        body{
+        font-family: 'Lato', sans-serif;
+        background-image:url({% static 'visitorsApp/backwall.png' %});
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+        background-attachment:fixed;
+        }
+        #logo{
+        width:100%;
+        display: inline-block;
+        margin-top: 0px;
+        }
+         #greetings{
+         width:100%;
+         display: inline-block;
+         }
+
+         .greetings h2 {
+         margin: 30px;
+         background-color: #44BBC1;
+         border: 1px solid black;
+         opacity: 0.8;
+         width :30%;
+         padding-left:100px;
+         border-radius:10px;
+        }
+          #logo a{
+        float:right;
+        margin-top:10px;
+        }
+        table{
+        margin-left:30px;
+        margin-bottom:30px;
+        border: 3px solid black;
+        width:60%;
+        border-radius:20px;
+        }
+        th{
+        border: 2px solid black;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #337EFF;
+        color: white;
+        padding: 8px;
+        }
+        td {
+        border: 1px solid black;
+        background-color:#F7CA86;
+        }
+        #table-data h3{
+        margin: 30px;
+        background-color: #1DE5F5;
+        border: 1px solid black;
+        opacity: 1;
+        width :40%;
+        padding-left:100px;
+        color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+{% load static %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Event-Visitors</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/visitors">Record Entry</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class ="containerfull">
+<div class="container-fluid" id="logo">
+    <img src="{% static 'visitorsApp/mylogo.png' %}">
+    <a href="/logout"><img src="{% static 'visitorsApp/logoutb.png' %}"></a>
+</div>
+    <div class="details">
+        <div class="greetings" id="greetings">
+    <h2> Visitor's record Section </h2>
+</div>
+ <div id="table-data">
+{% if info %}
+ <h3>-:Details of visitor's are as follow:-</h3>
+ <table>
+     <tr>
+         <th>Date and time</th>
+         <th>Name</th>
+         <th>Address</th>
+         <th>Purpose</th>
+         <th>Department</th>
+         <th>Whom to meet</th>
+         <th>Mobile no.</th>
+     </tr>
+     {% for data in info %}
+ <tr>
+     <td>{{data.daytime}}</td>
+     <td>{{data.vname}}</td>
+     <td>{{data.address}}</td>
+     <td>{{data.purpose}}</td>
+     <td>{{data.department}}</td>
+     <td>{{data.whom}}</td>
+     <td>{{data.mobile1}}</td>
+     {% endfor %}
+ </tr>
+</table>
+{% else %}
+ <h1>No Data</h1>
+{% endif %}
+    </div>
+    </div>
+</div>
+</body>
+</html>

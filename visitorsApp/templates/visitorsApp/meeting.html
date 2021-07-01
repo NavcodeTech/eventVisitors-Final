@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Home-Visitors</title>
+    <style>
+    {% load static %}
+        body{
+        font-family: 'Lato', sans-serif;
+        background-image:url({% static 'visitorsApp/backwall.png' %});
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+        background-attachment:fixed;
+        }
+        #logo{
+        width:100%;
+        display: inline-block;
+        margin-top: 0px;
+        }
+        #logo a{
+        float:right;
+        margin-top:10px;
+        }
+         #greetings{
+         width:100%;
+         display: inline-block;
+         }
+
+         .greetings h2 {
+   margin: 30px;
+   background-color: #44BBC1;
+   border: 1px solid black;
+   opacity: 0.6;
+   width :30%;
+   padding-left:100px;
+   border-radius:10px;
+}
+
+.user_card {
+			width: 750px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: #74cfbf;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #fff;
+		}
+		#search{
+		width :50%;
+		float:right;
+		margin-top:10px;
+		}
+		#allem{
+		float:right;
+		margin-top:10px;
+		padding-right:10px;
+		}
+		#message{
+         width:20%;
+         float:left;
+         background-color:green;
+         color:white
+         margin-bottom:20px;
+         margin-left:20px;
+         }
+
+
+    </style>
+</head>
+<body>
+{% load static %}
+<div class ="containerfull">
+<div class="container-fluid" id="logo">
+    <img src="{% static 'visitorsApp/mylogo.png' %}">
+    <a href="/logout"><img src="{% static 'visitorsApp/logoutb.png' %}"></a>
+    <form class="d-flex" id="search" action="{% url 'emrecord' %}" method="post">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    <form class="d-flex" id="allem" action="{% url 'allMeeting' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-success" type="submit">All Meeetings</button>
+      </form>
+</div>
+<div class="greetings" id="greetings">
+    <h2> Enter details of meeting </h2>
+</div>
+     <div class="container mt-3" id="message">
+    {% if messages%}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+</div>
+    <form method="post" action="/meeting/">
+        {% csrf_token %}
+    <div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">REGISTER MEETINGS/EVENTS HERE</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+        <table>
+        <tr>
+         <td>
+             <label for="daytime">Date and time:</label>
+         </td>
+         <td>
+             <input type="datetime-local" id="daytime" name="daytime" required>
+         </td>
+         <td>
+             <label for="depart">Department:</label>
+         </td>
+         <td>
+             <input type="text" id="depart" name="depart" placeholder="Department" required>
+         </td>
+        </tr>
+         <tr>
+         <td>
+              <label for="organiser">Organiser</label>
+         </td>
+         <td>
+              <input type="text" id="organiser" name="organiser" placeholder="Organiser" required>
+         </td>
+          <td>
+                <label for="purpose">Purpose:</label>
+          </td>
+             <td>
+                <input type="textarea" id="purpose" name="purpose" placeholder="Purpose" required>
+             </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="attendee">Attendee:</label>
+            </td>
+             <td>
+                <textarea id="attendee" name="attendee" rows="3" cols="14" required></textarea>
+             </td>
+        </tr>
+         <tr>
+             <td>
+                 <label for="summary">Summary:</label></br>
+             </td>
+             <td>
+                 <textarea id="summary" name="summary" rows="5" cols="18" required></textarea>
+             </td>
+              <td>
+                 <label for="feedback">Feedback:</label></br>
+             </td>
+             <td>
+                 <textarea id="feedback" name="feedback" rows="5" cols="18" required></textarea>
+             </td>
+         </tr>
+            <tr>
+                <td> </td>
+                <td></td>
+                <td>
+                    <input type="submit" value="submit" class="btn btn-primary">
+                </td>
+            </tr>
+        </table>
+    </form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
